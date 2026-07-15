@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwarmTech — Teknofest 2027 Sürü Dron Ekibi</title>
+  <meta name="description" content="3 mühendis adayı. 1 sürü. Otonom dron sürüsüyle Teknofest 2027 yolculuğumuz.">
+  <meta property="og:title" content="SwarmTech — Gökyüzünü Birlikte Kodluyoruz">
+  <meta property="og:description" content="Otonom dron sürüsüyle Teknofest 2027 yolculuğumuz.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav class="nav">
+    <a href="#hero" class="nav__logo">🛸 <span>SwarmTech</span></a>
+    <button class="nav__toggle" aria-label="Menüyü aç/kapat" aria-expanded="false">☰</button>
+    <ul class="nav__links">
+      <li><a href="#mission">Misyon</a></li>
+      <li><a href="#roadmap">Yol Haritası</a></li>
+      <li><a href="#team">Ekip</a></li>
+      <li><a href="#logbook">Günlük</a></li>
+      <li><a href="#join" class="nav__cta">Ekibe Katıl</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════ 4.1 HERO — "Sürü Uyanıyor" ═══════════ -->
+  <header class="hero" id="hero">
+    <canvas id="swarm-canvas" aria-hidden="true"></canvas>
+    <div class="hero__content">
+      <p class="hero__kicker">TEKNOFEST 2027</p>
+      <h1 class="hero__title">Gökyüzünü Birlikte<br>Kodluyoruz</h1>
+      <p class="hero__sub">3 mühendis adayı. 1 sürü. Otonom dron sürüsüyle Teknofest 2027 yolculuğumuz.</p>
+      <div class="hero__ctas">
+        <a href="#roadmap" class="btn btn--ghost">Yol Haritamız ↓</a>
+        <a href="#join" class="btn btn--solid">Ekibe Katıl</a>
+      </div>
+    </div>
+    <div class="hero__countdown" aria-label="Teknofest 2027 geri sayımı">
+      <span class="hero__countdown-label">TEKNOFEST 2027'YE</span>
+      <div class="countdown" id="countdown">
+        <div class="countdown__unit"><span class="countdown__num" id="cd-days">—</span><span class="countdown__label">gün</span></div>
+        <span class="countdown__sep">:</span>
+        <div class="countdown__unit"><span class="countdown__num" id="cd-hours">—</span><span class="countdown__label">saat</span></div>
+        <span class="countdown__sep">:</span>
+        <div class="countdown__unit"><span class="countdown__num" id="cd-mins">—</span><span class="countdown__label">dakika</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ═══════════ 4.2 MİSYON ═══════════ -->
+    <section class="section" id="mission">
+      <h2 class="section__title reveal">Neden Bu Proje?</h2>
+      <div class="mission__grid">
+        <article class="card mission__card reveal">
+          <div class="mission__icon">🧠</div>
+          <h3>Otonomi</h3>
+          <p>İnsan müdahalesi olmadan karar veren dronlar. Rota, engel, görev — hepsi kodun içinde.</p>
+        </article>
+        <article class="card mission__card reveal">
+          <div class="mission__icon">🐦</div>
+          <h3>Sürü Zekâsı</h3>
+          <p>Tek tek basit, birlikte akıllı. Bir sığırcık sürüsü gibi: lidersiz ama kusursuz koordineli.</p>
+        </article>
+        <article class="card mission__card reveal">
+          <div class="mission__icon">🏆</div>
+          <h3>Teknofest</h3>
+          <p>Türkiye'nin en büyük teknoloji sahnesinde. Hedef belli, takvim işliyor.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════ 4.3 YOL HARİTASI ═══════════ -->
+    <section class="section" id="roadmap">
+      <h2 class="section__title reveal">Yol Haritası</h2>
+      <p class="section__sub reveal">Sekiz adım. Simülasyondan (bilgisayarda uçuş) gerçek gökyüzüne.</p>
+      <div class="timeline" id="timeline">
+        <svg class="timeline__svg" aria-hidden="true" preserveAspectRatio="none">
+          <line class="timeline__track" x1="50%" y1="0" x2="50%" y2="100%"></line>
+          <line class="timeline__progress" id="timeline-progress" x1="50%" y1="0" x2="50%" y2="100%"></line>
+        </svg>
+
+        <article class="card tl-card tl-card--left reveal" data-status="done">
+          <span class="badge badge--done">✅ Tamamlandı</span>
+          <span class="tl-card__date">2026 Q3</span>
+          <h3>Temel Eğitim</h3>
+          <ul>
+            <li>C/C++, Python, Git, Linux temelleri</li>
+            <li>ROS 2 (robot işletim sistemi) kavramları</li>
+          </ul>
+        </article>
+
+        <article class="card tl-card tl-card--right reveal" data-status="active">
+          <span class="badge badge--active">🔄 Devam ediyor</span>
+          <span class="tl-card__date">2026 Q3–Q4</span>
+          <h3>Simülasyon Dünyası</h3>
+          <ul>
+            <li>Gazebo + PX4-SITL kurulumu</li>
+            <li>Tek dron offboard (bilgisayardan) kontrol</li>
+            <li>MAVLink haberleşme protokolü</li>
+          </ul>
+        </article>
+
+        <article class="card tl-card tl-card--left reveal" data-status="locked">
+          <span class="badge badge--locked">🔒 Sırada</span>
+          <span class="tl-card__date">2026 Q4</span>
+          <h3>Sanal Sürü</h3>
+          <ul>
+            <li>Çoklu dron spawn</li>
+            <li>Reynolds flocking (sürü kuralları) implementasyonu</li>
+            <li>Formasyon uçuşu (sim)</li>
+          </ul>
+        </article>
+
+        <article class="card tl-card tl-card--right reveal" data-status="locked">
+          <span class="badge badge--locked">🔒 Sırada</span>
+          <span class="tl-card__date">2027 Q1</span>
+          <h3>İlk Gerçek Uçuş</h3>
+          <ul>
+            <li>Pixhawk 6C + RPi4 entegrasyonu</li>
+            <li>Failsafe (güvenli iniş) &amp; güvenlik protokolleri</li>
+            <li>Saha testi</li>
+          </ul>
+        </article>
+
+        <article class="card tl-card tl-card--left reveal" data-status="locked">
+          <span class="badge badge--locked">🔒 Sırada</span>
+          <span class="tl-card__date">2027 Q1–Q2</span>
+          <h3>Görü Sistemi</h3>
+          <ul>
+            <li>OpenCV nesne tespiti</li>
+            <li>GPS + görüntü füzyonu ile konumlandırma</li>
+          </ul>
+        </article>
+
+        <article class="card tl-card tl-card--right reveal" data-status="locked">
+          <span class="badge badge--locked">🔒 Sırada</span>
+          <span class="tl-card__date">2027 Q2</span>
+          <h3>Mini Sürü (2-3 dron)</h3>
+          <ul>
+            <li>Dronlar arası haberleşme</li>
+            <li>Gerçek ortamda koordinasyon testleri</li>
+          </ul>
+        </article>
+
+        <article class="card tl-card tl-card--left reveal" data-status="locked">
+          <span class="badge badge--locked">🔒 Sırada</span>
+          <span class="tl-card__date">2027 Q2–Q3</span>
+          <h3>Teknofest Provası</h3>
+          <ul>
+            <li>Şartname görev senaryoları</li>
+            <li>Tam sürü saha provaları</li>
+            <li>Rapor &amp; sunum</li>
+          </ul>
+        </article>
+
+        <article class="card tl-card tl-card--right tl-card--final reveal" data-status="locked">
+          <span class="badge badge--final">🏁 Final</span>
+          <span class="tl-card__date">2027</span>
+          <h3>TEKNOFEST 2027</h3>
+          <ul>
+            <li>Yarışma günü. Gökyüzü bizim.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════ 4.4 EKİP ═══════════ -->
+    <section class="section" id="team">
+      <h2 class="section__title reveal">Sürünün Beyinleri</h2>
+      <div class="team__grid">
+        <article class="card team__card reveal" data-tilt>
+          <div class="team__avatar">👨‍💻</div>
+          <h3>Üye 1</h3>
+          <p class="team__role">Uçuş Yazılımı &amp; Gömülü Sistemler</p>
+          <p class="team__motto">"Kod uçar, biz izleriz."</p>
+          <div class="team__links">
+            <a href="#" aria-label="GitHub">GitHub</a>
+            <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          </div>
+        </article>
+        <article class="card team__card reveal" data-tilt>
+          <div class="team__avatar">🧑‍🔬</div>
+          <h3>Üye 2</h3>
+          <p class="team__role">Simülasyon &amp; Algoritma</p>
+          <p class="team__motto">"Önce simde çakılır, sahada uçarız."</p>
+          <div class="team__links">
+            <a href="#" aria-label="GitHub">GitHub</a>
+            <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          </div>
+        </article>
+        <article class="card team__card reveal" data-tilt>
+          <div class="team__avatar">👩‍💻</div>
+          <h3>Üye 3</h3>
+          <p class="team__role">Görü Sistemleri &amp; Haberleşme</p>
+          <p class="team__motto">"Dron görmüyorsa, ben de uyumuyorum."</p>
+          <div class="team__links">
+            <a href="#" aria-label="GitHub">GitHub</a>
+            <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          </div>
+        </article>
+        <a href="#join" class="card team__card team__card--you reveal">
+          <div class="team__avatar">❓</div>
+          <h3>Sen?</h3>
+          <p class="team__role">Boş koltuk seni bekliyor</p>
+          <p class="team__motto">Sürüye katıl →</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════ 4.5 TEKNOLOJİ YIĞINI ═══════════ -->
+    <section class="section section--full" id="stack">
+      <h2 class="section__title reveal">Teknoloji Yığını</h2>
+      <div class="marquee" aria-label="Kullandığımız teknolojiler">
+        <div class="marquee__track" id="marquee-track">
+          <!-- JS içerikleri iki kez basar (sonsuz döngü için) -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 4.6 İLERLEME GÜNLÜĞÜ ═══════════ -->
+    <section class="section" id="logbook">
+      <h2 class="section__title reveal">Uçuş Kayıt Defteri</h2>
+      <div class="card logbook reveal">
+        <div class="logbook__header">
+          <span class="logbook__dot logbook__dot--r"></span>
+          <span class="logbook__dot logbook__dot--y"></span>
+          <span class="logbook__dot logbook__dot--g"></span>
+          <span class="logbook__title">swarm@teknofest:~/logs</span>
+        </div>
+        <div class="logbook__body" id="logbook-body">
+          <!-- logs.json'dan JS ile doldurulur -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 4.7 EKİBE KATIL ═══════════ -->
+    <section class="section" id="join">
+      <h2 class="section__title reveal">Ekibe Katıl 📡</h2>
+      <div class="join__grid">
+        <div class="join__text reveal">
+          <p class="join__pitch">"Kod yazmayı bilmiyorsan bile öğrenme azmin varsa yerin hazır."</p>
+          <p>2027'ye kadar ekibi büyütüyoruz. Gömülü sistemden mekaniğe, hangi alana meraklıysan formu doldur — konuşalım.</p>
+        </div>
+        <form class="card join__form reveal" id="join-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <label>İsim
+            <input type="text" name="name" required autocomplete="name" placeholder="Adın Soyadın">
+          </label>
+          <label>Bölüm / Sınıf
+            <input type="text" name="department" required placeholder="ör. Bilgisayar Müh. 2. sınıf">
+          </label>
+          <label>İlgi Alanı
+            <select name="interest" required>
+              <option value="" disabled selected>Seç…</option>
+              <option>Gömülü</option>
+              <option>Yazılım</option>
+              <option>Görü</option>
+              <option>Mekanik</option>
+            </select>
+          </label>
+          <label>Mesaj
+            <textarea name="message" rows="4" placeholder="Kendinden kısaca bahset…"></textarea>
+          </label>
+          <button type="submit" class="btn btn--solid">Gönder 🚀</button>
+          <p class="join__fallback">Form çalışmazsa: <a href="mailto:kayalarbk2004@gmail.com?subject=SwarmTech%20Ekibe%20Katılım">e-posta gönder</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══════════ 4.8 FOOTER ═══════════ -->
+  <footer class="footer">
+    <button class="footer__drone" id="easter-egg" title="🥚 ...bir şey mi oldu?" aria-label="Sürüye dron ekle">🛸</button>
+    <p>Marmara Üniversitesi · İstanbul</p>
+    <p><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> · © <span id="footer-year">2026</span> SwarmTech</p>
+  </footer>
+
+  <script src="js/swarm.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/countdown.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

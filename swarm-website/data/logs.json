@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2026-07-10",
+    "title": "Ekip kuruldu",
+    "desc": "3 kişilik çekirdek kadro tamam. Hedef: Teknofest 2027 Sürü İHA."
+  },
+  {
+    "date": "2026-07-12",
+    "title": "Web sitesi yayında",
+    "desc": "Bu sayfanın arka planındaki sürü bile bizim flocking kodumuzla uçuyor."
+  },
+  {
+    "date": "2026-07-15",
+    "title": "Gazebo kurulumu başladı",
+    "desc": "PX4-SITL + Gazebo ortamı ayağa kalkıyor. İlk sanal kalkış yakında."
+  }
+]
