@@ -1,0 +1,237 @@
+{
+  "phases": [
+    {
+      "id": "faz0",
+      "title": "Faz 0 — Ortak Temel",
+      "subtitle": "Herkes",
+      "duration": "~4-6 hafta",
+      "motto": "Temeli sağlam atan, sürüyü sağlam uçurur.",
+      "project": "🎯 Faz 0 mezuniyet projesi: Herkes Python ile basit bir 2D sürü simülasyonu yazar (pygame'de 20 nokta, Reynolds kurallarıyla hareket etsin). Hem Python pratiği hem projenin kalbindeki algoritmayla ilk tanışma.",
+      "topics": [
+        {
+          "id": "linux",
+          "title": "Linux & Terminal",
+          "items": [
+            "Ubuntu kurulumu (dual boot veya WSL2) — ROS 2 için şart",
+            "Temel komutlar: cd, ls, mkdir, cp, mv, rm, chmod, grep, nano",
+            "Paket yönetimi: apt install, PATH kavramı, .bashrc"
+          ],
+          "resources": [
+            { "name": "The Linux Command Line (ücretsiz PDF)", "url": "https://linuxcommand.org/tlcl.php" },
+            { "name": "Ubuntu resmi dökümanları", "url": "https://help.ubuntu.com" }
+          ]
+        },
+        {
+          "id": "git",
+          "title": "Git & GitHub (Ekip Çalışması)",
+          "items": [
+            "clone, add, commit, push, pull döngüsü",
+            "Branch açma, merge, çakışma (conflict) çözme",
+            "Pull Request akışı — ekip içinde kod incelemesi kültürü"
+          ],
+          "resources": [
+            { "name": "learngitbranching.js.org (interaktif, Türkçe destekli)", "url": "https://learngitbranching.js.org/?locale=tr_TR" }
+          ],
+          "exitCriteria": "Ekip ortak bir repo'da branch'lerle çakışmasız çalışabiliyor."
+        },
+        {
+          "id": "python",
+          "title": "Python Temelleri",
+          "items": [
+            "Veri tipleri, fonksiyonlar, listeler/sözlükler, dosya okuma",
+            "Sınıflar (OOP) — ROS 2 node'ları sınıf tabanlı yazılır",
+            "pip, sanal ortamlar (venv)"
+          ],
+          "resources": [
+            { "name": "Python.org resmi tutorial", "url": "https://docs.python.org/3/tutorial/" },
+            { "name": "Automate the Boring Stuff", "url": "https://automatetheboringstuff.com" }
+          ]
+        },
+        {
+          "id": "drone-basics",
+          "title": "Dron ve Uçuş Temelleri (Teori)",
+          "items": [
+            "Quadcopter nasıl uçar: itki, tork, PID kontrolün sezgisel mantığı",
+            "Uçuş modları: Stabilize, Position Hold, Offboard, RTL",
+            "Temel bileşenler: uçuş kontrolcüsü (FC), ESC, motor, batarya (LiPo güvenliği!), GPS, IMU",
+            "SHGM dron mevzuatı ve güvenlik kuralları (Türkiye'de yasal uçuş)"
+          ],
+          "resources": [
+            { "name": "PX4 User Guide — Basic Concepts", "url": "https://docs.px4.io/main/en/getting_started/px4_basic_concepts.html" },
+            { "name": "Andrew Gibiansky — Quadcopter Dynamics", "url": "https://andrew.gibiansky.com/blog/physics/quadcopter-dynamics/" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faz1",
+      "title": "Faz 1 — Simülasyon Dünyası",
+      "subtitle": "Sanal gökyüzü",
+      "duration": "~6-8 hafta",
+      "motto": "Simülasyonda uçan, sahada düşmez... daha az düşer.",
+      "topics": [
+        {
+          "id": "ros2",
+          "title": "ROS 2 (Humble/Jazzy)",
+          "items": [
+            "Node, Topic, Publisher/Subscriber kavramları",
+            "Service, Action, Parameter",
+            "colcon ile workspace ve paket oluşturma",
+            "Launch dosyaları, rqt_graph, ros2 topic echo ile debug"
+          ],
+          "resources": [
+            { "name": "ROS 2 resmi tutorials (sırayla hepsi)", "url": "https://docs.ros.org/en/jazzy/Tutorials.html" },
+            { "name": "Articulated Robotics YouTube serisi", "url": "https://www.youtube.com/@ArticulatedRobotics" }
+          ]
+        },
+        {
+          "id": "gazebo",
+          "title": "Gazebo + PX4-SITL",
+          "items": [
+            "PX4 kaynak koddan derleme, SITL başlatma",
+            "Gazebo'da tek dron spawn etme, QGroundControl bağlantısı",
+            "Dünya (world) dosyaları düzenleme"
+          ],
+          "resources": [
+            { "name": "PX4 Dev Guide — Simulation", "url": "https://docs.px4.io/main/en/simulation/" }
+          ]
+        },
+        {
+          "id": "mavlink",
+          "title": "MAVLink & Offboard Kontrol",
+          "items": [
+            "MAVLink protokolünün mantığı: mesajlar, heartbeat, komutlar",
+            "MAVSDK-Python veya MAVROS ile: arm → takeoff → waypoint → land",
+            "Offboard modda hız/pozisyon setpoint gönderme"
+          ],
+          "resources": [
+            { "name": "MAVSDK-Python", "url": "https://mavsdk.mavlink.io/main/en/python/" }
+          ],
+          "exitCriteria": "Simülasyondaki dron, yazdığınız Python script ile kare çizerek uçuyor."
+        },
+        {
+          "id": "multi-sim",
+          "title": "Çoklu Dron Simülasyonu",
+          "items": [
+            "PX4-SITL'de birden fazla instance (farklı MAVLink portları)",
+            "ROS 2 namespace'leri ile dronları ayırma",
+            "Reynolds flocking'i (Faz 0'daki 2D sim) 3D'ye ve gerçek dron modeline taşıma"
+          ],
+          "resources": [
+            { "name": "PX4 Multi-Vehicle Simulation", "url": "https://docs.px4.io/main/en/simulation/multi-vehicle-simulation.html" }
+          ],
+          "exitCriteria": "3 sanal dron simülasyonda çarpışmadan formasyon uçuşu yapıyor."
+        }
+      ]
+    },
+    {
+      "id": "faz2",
+      "title": "Faz 2 — Rol Bazlı Uzmanlaşma",
+      "subtitle": "3 kol, haftalık öğret-öğren",
+      "duration": "~8-10 hafta",
+      "motto": "Herkes kendi kolunda derinleşir, birbirine öğreterek öğrenir.",
+      "tracks": [
+        {
+          "id": "hardware",
+          "icon": "🔧",
+          "title": "Gömülü Sistemler & Donanım",
+          "topics": [
+            {
+              "id": "hw-main",
+              "title": "Donanım Müfredatı",
+              "items": [
+                "Pixhawk 6C: portlar, güç modülü, sensör kalibrasyonu, parametre ayarları",
+                "Raspberry Pi 4: headless kurulum, SSH, seri port üzerinden Pixhawk bağlantısı",
+                "ESC kalibrasyonu, motor test, pervane güvenliği",
+                "Batarya yönetimi, güç bütçesi hesabı, failsafe konfigürasyonu",
+                "Lehimleme ve temel elektronik montaj (XT60, JST konnektörler)"
+              ],
+              "resources": [
+                { "name": "PX4 Hardware docs", "url": "https://docs.px4.io/main/en/hardware/drone_parts.html" },
+                { "name": "Painless360 YouTube kanalı", "url": "https://www.youtube.com/@Painless360" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "autonomy",
+          "icon": "🧠",
+          "title": "Otonomi & Sürü Algoritmaları",
+          "topics": [
+            {
+              "id": "auto-main",
+              "title": "Algoritma Müfredatı",
+              "items": [
+                "Reynolds flocking'in ötesi: lider-takipçi, sanal yapı, konsensüs tabanlı formasyon",
+                "Yol planlama temelleri: A*, RRT (kavramsal + basit implementasyon)",
+                "Durum makineleri ile görev yönetimi (mission state machine)",
+                "Kalman filtresi temelleri — sensör füzyonunun mantığı",
+                "Çarpışma önleme: potansiyel alan yöntemi"
+              ],
+              "resources": [
+                { "name": "Distributed Multi-Robot Systems ders notları", "url": "https://web.mit.edu/16.412j/www/html/" },
+                { "name": "Vijay Kumar — Aerial Robotics (Coursera)", "url": "https://www.coursera.org/learn/robotics-flight" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "vision",
+          "icon": "👁️",
+          "title": "Görü Sistemleri & Haberleşme",
+          "topics": [
+            {
+              "id": "vis-main",
+              "title": "Görü Müfredatı",
+              "items": [
+                "OpenCV: görüntü okuma, renk uzayları, eşikleme, kontur bulma",
+                "Nesne tespiti: önce klasik yöntemler (renk+şekil), sonra YOLO (hazır model kullanımı)",
+                "Kamera kalibrasyonu, piksel → dünya koordinatı dönüşümü",
+                "Dronlar arası haberleşme: WiFi mesh / telemetri modülleri, gecikme ve menzil testleri",
+                "ROS 2 üzerinden görüntü akışı (image_transport)"
+              ],
+              "resources": [
+                { "name": "OpenCV resmi Python tutorial", "url": "https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html" },
+                { "name": "PyImageSearch blog", "url": "https://pyimagesearch.com/blog/" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faz3",
+      "title": "Faz 3 — Gerçek Donanım & Entegrasyon",
+      "subtitle": "Teknofest sezonuna kadar",
+      "duration": "Sezon sonuna kadar",
+      "motto": "Gökyüzü provası: önce güvenlik, sonra cesaret.",
+      "topics": [
+        {
+          "id": "integration",
+          "title": "Saha & Entegrasyon",
+          "items": [
+            "Tek dronla ilk gerçek uçuş: önce manuel, sonra Position Hold, en son Offboard",
+            "Güvenlik protokolü yazılı hale getirilir: uçuş öncesi kontrol listesi, acil durum prosedürü, test alanı kuralları",
+            "RPi4 üzerinde kod dağıtımı: SSH ile deploy, otomatik başlatma (systemd)",
+            "Loglama ve uçuş sonrası analiz: PX4 log dosyaları, Flight Review aracı",
+            "2-3 dronla saha koordinasyon testleri",
+            "Teknofest şartnamesi çıkınca: görev senaryolarına özel eğitim sprintleri"
+          ],
+          "resources": [
+            { "name": "PX4 Flight Review", "url": "https://review.px4.io" }
+          ],
+          "exitCriteria": "Nihai kriter: Şartname görevini simülasyonda %100, sahada güvenle tekrarlayabilmek."
+        }
+      ]
+    }
+  ],
+  "continuous": {
+    "title": "Sürekli Devam Edenler (Her Faz Boyunca)",
+    "items": [
+      "📝 Haftalık öğrenme günlüğü — herkes o hafta öğrendiği 1 şeyi siteye ekler",
+      "🗣️ Haftalık 30 dk \"öğret-öğren\" toplantısı — dönüşümlü sunum",
+      "🇬🇧 Teknik İngilizce: dökümanların çoğu İngilizce; okudukça gelişir, ayrıca çalışmaya gerek yok",
+      "📄 Rapor yazımı: Teknofest ÖTR/KTR raporları için IEEE formatı alışkanlığı"
+    ]
+  }
+}

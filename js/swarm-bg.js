@@ -1,29 +1,26 @@
 /* ═══════════════════════════════════════════════
-   swarm.js — Hero Canvas: Reynolds flocking
-   separation / alignment / cohesion + fare hedefi
+   swarm-bg.js — Hero arka planı: soluk, yavaş,
+   dikkat dağıtmayan flocking (15-20 boid)
    ═══════════════════════════════════════════════ */
 (function () {
   "use strict";
 
-  const canvas = document.getElementById("swarm-canvas");
+  const canvas = document.getElementById("swarm-bg");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   const CONFIG = {
-    count: isMobile ? 25 : 50,
-    neighborRadius: 60,
-    separationRadius: 24,
-    maxSpeed: 2.2,
-    maxForce: 0.05,
-    weights: { separation: 1.6, alignment: 1.0, cohesion: 0.9, mouse: 0.35 },
-    color: "#22D3EE",
+    count: 18,
+    neighborRadius: 70,
+    separationRadius: 26,
+    maxSpeed: 0.8,
+    maxForce: 0.02,
+    color: "rgba(34, 211, 238, 0.55)",
   };
 
   let width, height, boids = [];
-  const mouse = { x: null, y: null };
 
   function resize() {
     const rect = canvas.parentElement.getBoundingClientRect();
@@ -38,7 +35,7 @@
       y: Math.random() * height,
       vx: Math.cos(angle) * CONFIG.maxSpeed * 0.5,
       vy: Math.sin(angle) * CONFIG.maxSpeed * 0.5,
-      size: 1.5 + Math.random() * 1.5,
+      size: 1.2 + Math.random() * 1.3,
     };
   }
 
@@ -69,38 +66,21 @@
     }
 
     let ax = 0, ay = 0;
-
     if (sepCount > 0) {
-      let [fx, fy] = limit(sepX / sepCount, sepY / sepCount, CONFIG.maxForce);
-      ax += fx * CONFIG.weights.separation;
-      ay += fy * CONFIG.weights.separation;
+      const [fx, fy] = limit(sepX / sepCount, sepY / sepCount, CONFIG.maxForce);
+      ax += fx * 1.5; ay += fy * 1.5;
     }
     if (neighborCount > 0) {
-      // alignment: komşuların ortalama hızına yönel
       let [fx, fy] = limit(aliX / neighborCount - boid.vx, aliY / neighborCount - boid.vy, CONFIG.maxForce);
-      ax += fx * CONFIG.weights.alignment;
-      ay += fy * CONFIG.weights.alignment;
-      // cohesion: komşuların merkezine yönel
-      const cx = cohX / neighborCount - boid.x;
-      const cy = cohY / neighborCount - boid.y;
-      [fx, fy] = limit(cx * 0.01, cy * 0.01, CONFIG.maxForce);
-      ax += fx * CONFIG.weights.cohesion;
-      ay += fy * CONFIG.weights.cohesion;
-    }
-    // fare = hedef nokta
-    if (mouse.x !== null) {
-      const mx = mouse.x - boid.x;
-      const my = mouse.y - boid.y;
-      const [fx, fy] = limit(mx * 0.005, my * 0.005, CONFIG.maxForce);
-      ax += fx * CONFIG.weights.mouse;
-      ay += fy * CONFIG.weights.mouse;
+      ax += fx; ay += fy;
+      [fx, fy] = limit((cohX / neighborCount - boid.x) * 0.01, (cohY / neighborCount - boid.y) * 0.01, CONFIG.maxForce);
+      ax += fx * 0.9; ay += fy * 0.9;
     }
 
     boid.vx += ax; boid.vy += ay;
     [boid.vx, boid.vy] = limit(boid.vx, boid.vy, CONFIG.maxSpeed);
     boid.x += boid.vx; boid.y += boid.vy;
 
-    // kenarlardan sarmal geçiş
     if (boid.x < -10) boid.x = width + 10;
     if (boid.x > width + 10) boid.x = -10;
     if (boid.y < -10) boid.y = height + 10;
@@ -110,14 +90,11 @@
   function draw() {
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = CONFIG.color;
-    ctx.shadowColor = CONFIG.color;
-    ctx.shadowBlur = 6;
     for (const b of boids) {
       ctx.beginPath();
       ctx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
       ctx.fill();
     }
-    ctx.shadowBlur = 0;
   }
 
   function loop() {
@@ -126,23 +103,15 @@
     requestAnimationFrame(loop);
   }
 
-  /* reduced-motion: statik yıldız deseni */
   function drawStatic() {
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = CONFIG.color;
     for (let i = 0; i < CONFIG.count; i++) {
-      ctx.globalAlpha = 0.3 + Math.random() * 0.7;
       ctx.beginPath();
-      ctx.arc(Math.random() * width, Math.random() * height, 1 + Math.random() * 1.5, 0, Math.PI * 2);
+      ctx.arc(Math.random() * width, Math.random() * height, 1 + Math.random() * 1.3, 0, Math.PI * 2);
       ctx.fill();
     }
-    ctx.globalAlpha = 1;
   }
-
-  // dışarıdan dron ekleme (footer easter egg kullanır)
-  window.addDronesToSwarm = function (n) {
-    for (let i = 0; i < n; i++) boids.push(makeBoid());
-  };
 
   resize();
   boids = Array.from({ length: CONFIG.count }, makeBoid);
@@ -154,18 +123,7 @@
 
   if (reducedMotion) {
     drawStatic();
-    return;
+  } else {
+    loop();
   }
-
-  canvas.parentElement.addEventListener("mousemove", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  });
-  canvas.parentElement.addEventListener("mouseleave", () => {
-    mouse.x = null;
-    mouse.y = null;
-  });
-
-  loop();
 })();

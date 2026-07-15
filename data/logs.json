@@ -1,17 +1,17 @@
 [
   {
     "date": "2026-07-10",
-    "title": "Ekip kuruldu",
-    "desc": "3 kişilik çekirdek kadro tamam. Hedef: Teknofest 2027 Sürü İHA."
+    "author": "Ekip",
+    "text": "Öğrenme yol haritası hazırlandı — 4 faz, 3 kol, tek hedef 🛸"
   },
   {
-    "date": "2026-07-12",
-    "title": "Web sitesi yayında",
-    "desc": "Bu sayfanın arka planındaki sürü bile bizim flocking kodumuzla uçuyor."
+    "date": "2026-07-13",
+    "author": "Barış",
+    "text": "learngitbranching bitti, ilk PR açıldı 🎉"
   },
   {
     "date": "2026-07-15",
-    "title": "Gazebo kurulumu başladı",
-    "desc": "PX4-SITL + Gazebo ortamı ayağa kalkıyor. İlk sanal kalkış yakında."
+    "author": "Ekip",
+    "text": "Kokpit sitesi yayında. İşaretle, ilerle, uç."
   }
 ]
