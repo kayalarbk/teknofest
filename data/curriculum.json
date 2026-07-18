@@ -1,11 +1,36 @@
 {
+  "meta": {
+    "target": "Teknofest 2027 — Dron Sürü",
+    "team": "3 kişilik çekirdek ekip (2027 yarışması öncesi büyütülecek)",
+    "start": "Temmuz 2026",
+    "philosophy": "Küçük ekibin tek avantajı verimliliktir. Bu müfredat 'her şeyi baştan sona sırayla oku' üzerine değil; 'kullanacağın anda, üreterek ve birbirine öğreterek öğren' üzerine kurulu. Bir modül okumayla değil, çalışan bir çıktıyla kapanır.",
+    "principles": [
+      { "name": "Yaparak öğren", "detail": "Her konunun bir 'doneWhen' (bitti tanımı) var. O çıktı gerçekleşmeden konu kapanmaz; teori tek başına ilerleme sayılmaz." },
+      { "name": "Öğreterek öğren", "detail": "Bir şeyi öğrenmenin en hızlı yolu onu anlatmaktır. Her konunun bir 'sahibi' vardır; o kişi haftalık toplantıda ekibe 10 dk öğretir + demo yapar. Böylece 3 kişi de her koldan haberdar kalır, kimse tek nokta olmaz." },
+      { "name": "Tam zamanında öğren", "detail": "Kalman filtresini kullanmadan 2 ay önce öğrenme. Konular kullanılacakları sıraya dizildi; ileri konular gerçek ihtiyaç doğunca açılır." },
+      { "name": "Paralel kollar + senkron noktaları", "detail": "3 kişi her şeyi sırayla öğrenmez. Ortak temelden sonra ayrışır, entegrasyon kilometre taşlarında (milestones) birleşiriz." },
+      { "name": "Donanımı erken sipariş et, erken kır", "detail": "Kargo/gümrük ve arıza takvim yer. Donanım Faz 1'de değil Faz 0'da sipariş edilir; herkes simülasyon öğrenirken donanım sahibi gerçek kartı kurcalamaya başlar." },
+      { "name": "Geriye doğru planla", "detail": "Boş zamandan değil, Teknofest takviminden (ÖTR/KTR/finaller) geriye doğru planla ve araya tampon bırak. Aşağıdaki tarihler tahminidir; şartname takvimi çıkınca kilitle." }
+    ],
+    "cadence": {
+      "title": "Haftalık Ritim — formasyonun kalbi",
+      "note": "Verimlilik konu listesinden değil, tekrarlanan bu döngüden gelir. Kısa ama şaşmaz olsun.",
+      "steps": [
+        "Pazartesi (15 dk, online): Haftanın hedefi konur; her kişi kendi 'doneWhen'ini ve o hafta öğreteceği konuyu seçer.",
+        "Hafta içi: Bireysel çalışma + build. Kaynaktan sadece o hafta gerekeni oku (tam zamanında), tamamını değil.",
+        "Cumartesi/Pazar (45 dk): Öğret-öğren toplantısı. Herkes o hafta öğrendiğini 10 dk anlatır ve çalışan bir demo gösterir.",
+        "Toplantı sonu (5 dk): Öğrenme günlüğüne 1 giriş eklenir; sonraki haftanın sahiplikleri dağıtılır. Takılınan yer 'blocker' olarak not düşülür."
+      ]
+    }
+  },
   "phases": [
     {
       "id": "faz0",
-      "title": "Faz 0 — Ortak Temel",
+      "title": "Faz 0 — Ortak Temel & Erken Sipariş",
       "subtitle": "Herkes",
-      "duration": "~4-6 hafta",
+      "duration": "~4-6 hafta (hedef: Tem–Ağu 2026)",
       "motto": "Temeli sağlam atan, sürüyü sağlam uçurur.",
+      "goal": "Herkes aynı araç zincirini ve dili konuşur hale gelir; paralelde donanım siparişi verilir ki Faz 2/3'te el altında olsun.",
       "project": "🎯 Faz 0 mezuniyet projesi: Herkes Python ile basit bir 2D sürü simülasyonu yazar (pygame'de 20 nokta, Reynolds kurallarıyla hareket etsin). Hem Python pratiği hem projenin kalbindeki algoritmayla ilk tanışma.",
       "topics": [
         {
@@ -16,6 +41,7 @@
             "Temel komutlar: cd, ls, mkdir, cp, mv, rm, chmod, grep, nano",
             "Paket yönetimi: apt install, PATH kavramı, .bashrc"
           ],
+          "doneWhen": "Herkesin makinesinde Ubuntu çalışıyor; terminalden dosya ve paket yönetimini komut ezberlemeden yapabiliyor.",
           "resources": [
             { "name": "The Linux Command Line (ücretsiz PDF)", "url": "https://linuxcommand.org/tlcl.php" },
             { "name": "Ubuntu resmi dökümanları", "url": "https://help.ubuntu.com" }
@@ -29,10 +55,11 @@
             "Branch açma, merge, çakışma (conflict) çözme",
             "Pull Request akışı — ekip içinde kod incelemesi kültürü"
           ],
+          "doneWhen": "Ekip ortak bir repo'da branch'lerle ve PR akışıyla çakışmasız çalışabiliyor; her PR en az 1 kişi tarafından inceleniyor.",
+          "exitCriteria": "Ekip ortak bir repo'da branch'lerle çakışmasız çalışabiliyor.",
           "resources": [
             { "name": "learngitbranching.js.org (interaktif, Türkçe destekli)", "url": "https://learngitbranching.js.org/?locale=tr_TR" }
-          ],
-          "exitCriteria": "Ekip ortak bir repo'da branch'lerle çakışmasız çalışabiliyor."
+          ]
         },
         {
           "id": "python",
@@ -42,6 +69,7 @@
             "Sınıflar (OOP) — ROS 2 node'ları sınıf tabanlı yazılır",
             "pip, sanal ortamlar (venv)"
           ],
+          "doneWhen": "Herkes sınıf tabanlı küçük bir program (ör. 2D sim iskeleti) yazıp venv içinde çalıştırabiliyor.",
           "resources": [
             { "name": "Python.org resmi tutorial", "url": "https://docs.python.org/3/tutorial/" },
             { "name": "Automate the Boring Stuff", "url": "https://automatetheboringstuff.com" }
@@ -56,9 +84,25 @@
             "Temel bileşenler: uçuş kontrolcüsü (FC), ESC, motor, batarya (LiPo güvenliği!), GPS, IMU",
             "SHGM dron mevzuatı ve güvenlik kuralları (Türkiye'de yasal uçuş)"
           ],
+          "doneWhen": "Herkes bir quadcopter'ın nasıl uçtuğunu ve uçuş modlarını beyaz tahtada anlatabiliyor; SHGM'nin temel kurallarını biliyor.",
           "resources": [
             { "name": "PX4 User Guide — Basic Concepts", "url": "https://docs.px4.io/main/en/getting_started/px4_basic_concepts.html" },
             { "name": "Andrew Gibiansky — Quadcopter Dynamics", "url": "https://andrew.gibiansky.com/blog/physics/quadcopter-dynamics/" }
+          ]
+        },
+        {
+          "id": "procurement",
+          "title": "Donanım Siparişi & LiPo Güvenliği (paralel)",
+          "owner": "Donanım kolu adayı yürütür, ekip onaylar",
+          "items": [
+            "Bileşen listesi çıkar: Pixhawk 6C, RPi 4, güç modülü, motor/ESC/pervane seti, LiPo + akıllı şarj cihazı, XT60/JST konnektör seti, telemetri modülü",
+            "İlk güç bütçesi taslağı (akım çekişi, uçuş süresi hedefi) — hangi motor/batarya kombinasyonu?",
+            "Tedarik/gümrük süresini hesaba kat: kritik parçalar ilk 2 hafta içinde sipariş edilir",
+            "LiPo güvenlik ve depolama kuralları yazılı hale getirilir (şarj, depolama voltajı, yangın önlemi)"
+          ],
+          "doneWhen": "Ana bileşenler sipariş edildi/yolda; güç bütçesi taslağı ve LiPo güvenlik kuralları repo'da yazılı.",
+          "resources": [
+            { "name": "PX4 Hardware docs", "url": "https://docs.px4.io/main/en/hardware/drone_parts.html" }
           ]
         }
       ]
@@ -66,9 +110,11 @@
     {
       "id": "faz1",
       "title": "Faz 1 — Simülasyon Dünyası",
-      "subtitle": "Sanal gökyüzü",
-      "duration": "~6-8 hafta",
+      "subtitle": "Sanal gökyüzü (herkes)",
+      "duration": "~6-8 hafta (hedef: Eyl–Eki 2026)",
       "motto": "Simülasyonda uçan, sahada düşmez... daha az düşer.",
+      "goal": "Herkes tek ve çoklu dronu simülasyonda uçurabilir. Bu faz boyunca kimin hangi kola yatkın olduğu doğal olarak belli olur; Faz 2 rolleri bu fazın SONUNDA netleştirilir.",
+      "roleSeeding": "Faz 1 aynı zamanda bir 'deneme sürüşü': herkes ROS/sim/donanımın hepsine dokunur. Kim ROS düğümleri yazmaktan, kim algoritmadan, kim donanım/görüden keyif alıyor gözlemleyin. Rolü ilgiye göre dağıtın, zorla değil.",
       "topics": [
         {
           "id": "ros2",
@@ -79,6 +125,7 @@
             "colcon ile workspace ve paket oluşturma",
             "Launch dosyaları, rqt_graph, ros2 topic echo ile debug"
           ],
+          "doneWhen": "Kişi kendi paketinde bir publisher ve subscriber node yazıp iki node'u konuşturabiliyor; rqt_graph ile akışı gösterebiliyor.",
           "resources": [
             { "name": "ROS 2 resmi tutorials (sırayla hepsi)", "url": "https://docs.ros.org/en/jazzy/Tutorials.html" },
             { "name": "Articulated Robotics YouTube serisi", "url": "https://www.youtube.com/@ArticulatedRobotics" }
@@ -92,6 +139,7 @@
             "Gazebo'da tek dron spawn etme, QGroundControl bağlantısı",
             "Dünya (world) dosyaları düzenleme"
           ],
+          "doneWhen": "Gazebo'da tek dron spawn ediliyor, QGroundControl'den arm edilip elle uçuruluyor.",
           "resources": [
             { "name": "PX4 Dev Guide — Simulation", "url": "https://docs.px4.io/main/en/simulation/" }
           ]
@@ -104,10 +152,11 @@
             "MAVSDK-Python veya MAVROS ile: arm → takeoff → waypoint → land",
             "Offboard modda hız/pozisyon setpoint gönderme"
           ],
+          "doneWhen": "Simülasyondaki dron, yazdığınız Python script ile kare çizerek uçuyor.",
+          "exitCriteria": "Simülasyondaki dron, yazdığınız Python script ile kare çizerek uçuyor.",
           "resources": [
             { "name": "MAVSDK-Python", "url": "https://mavsdk.mavlink.io/main/en/python/" }
-          ],
-          "exitCriteria": "Simülasyondaki dron, yazdığınız Python script ile kare çizerek uçuyor."
+          ]
         },
         {
           "id": "multi-sim",
@@ -117,10 +166,11 @@
             "ROS 2 namespace'leri ile dronları ayırma",
             "Reynolds flocking'i (Faz 0'daki 2D sim) 3D'ye ve gerçek dron modeline taşıma"
           ],
+          "doneWhen": "3 sanal dron simülasyonda çarpışmadan formasyon uçuşu yapıyor.",
+          "exitCriteria": "3 sanal dron simülasyonda çarpışmadan formasyon uçuşu yapıyor.",
           "resources": [
             { "name": "PX4 Multi-Vehicle Simulation", "url": "https://docs.px4.io/main/en/simulation/multi-vehicle-simulation.html" }
-          ],
-          "exitCriteria": "3 sanal dron simülasyonda çarpışmadan formasyon uçuşu yapıyor."
+          ]
         }
       ]
     },
@@ -128,13 +178,16 @@
       "id": "faz2",
       "title": "Faz 2 — Rol Bazlı Uzmanlaşma",
       "subtitle": "3 kol, haftalık öğret-öğren",
-      "duration": "~8-10 hafta",
+      "duration": "~8-10 hafta (hedef: Kas 2026–Oca 2027)",
       "motto": "Herkes kendi kolunda derinleşir, birbirine öğreterek öğrenir.",
+      "goal": "Her kişi bir kolda derinleşir; ama haftalık öğret-öğren sayesinde hiçbiri tek nokta (single point of failure) olmaz. Faz sonunda üç kol tek bir entegrasyon testinde buluşur.",
+      "syncRule": "Kollar ayrı ilerler ama iki senkron kuralı vardır: (1) Her hafta öğret-öğrende herkes kendi kolundan 10 dk anlatır. (2) Faz ortasında bir 'yarı yol entegrasyonu' yapılır — otonomi kolunun ürettiği komut, görü kolunun verisiyle, donanım kolunun kurduğu köprüden simülasyonda uçturulur.",
       "tracks": [
         {
           "id": "hardware",
           "icon": "🔧",
           "title": "Gömülü Sistemler & Donanım",
+          "doneWhen": "Pixhawk + RPi4 fiziksel olarak kuruldu, kalibre edildi ve RPi üzerinden Pixhawk'a MAVLink ile bağlanılıp temel telemetri okunabiliyor (henüz motorsuz, güvenli).",
           "topics": [
             {
               "id": "hw-main",
@@ -157,6 +210,7 @@
           "id": "autonomy",
           "icon": "🧠",
           "title": "Otonomi & Sürü Algoritmaları",
+          "doneWhen": "Lider-takipçi VEYA konsensüs tabanlı formasyon, çarpışma önleme ile birlikte simülasyonda 3 dronda çalışıyor; görev bir durum makinesiyle yönetiliyor.",
           "topics": [
             {
               "id": "auto-main",
@@ -165,7 +219,7 @@
                 "Reynolds flocking'in ötesi: lider-takipçi, sanal yapı, konsensüs tabanlı formasyon",
                 "Yol planlama temelleri: A*, RRT (kavramsal + basit implementasyon)",
                 "Durum makineleri ile görev yönetimi (mission state machine)",
-                "Kalman filtresi temelleri — sensör füzyonunun mantığı",
+                "Kalman filtresi temelleri — sensör füzyonunun mantığı (gerçekten gerekince derinleş)",
                 "Çarpışma önleme: potansiyel alan yöntemi"
               ],
               "resources": [
@@ -179,6 +233,7 @@
           "id": "vision",
           "icon": "👁️",
           "title": "Görü Sistemleri & Haberleşme",
+          "doneWhen": "Kamera akışından bir hedef (renk/şekil veya YOLO) tespit edilip konumu ROS 2 topic'ine yayınlanıyor; dronlar arası telemetri linki menzil/gecikme açısından test edildi.",
           "topics": [
             {
               "id": "vis-main",
@@ -203,8 +258,9 @@
       "id": "faz3",
       "title": "Faz 3 — Gerçek Donanım & Entegrasyon",
       "subtitle": "Teknofest sezonuna kadar",
-      "duration": "Sezon sonuna kadar",
+      "duration": "Sezon sonuna kadar (hedef: Şub 2027 →)",
       "motto": "Gökyüzü provası: önce güvenlik, sonra cesaret.",
+      "goal": "Simülasyonda olgunlaşan yetenekleri gerçek donanıma taşımak. Adım adım risk artışı: önce tek dron manuel, en son çoklu dron otonom. Güvenlik her şeyin önünde.",
       "topics": [
         {
           "id": "integration",
@@ -217,21 +273,61 @@
             "2-3 dronla saha koordinasyon testleri",
             "Teknofest şartnamesi çıkınca: görev senaryolarına özel eğitim sprintleri"
           ],
+          "doneWhen": "Şartname görevi simülasyonda %100 tekrarlanabiliyor; sahada 2-3 dronla güvenlik protokolüne uygun koordinasyon testi başarıyla yapıldı.",
+          "exitCriteria": "Nihai kriter: Şartname görevini simülasyonda %100, sahada güvenle tekrarlayabilmek.",
           "resources": [
             { "name": "PX4 Flight Review", "url": "https://review.px4.io" }
-          ],
-          "exitCriteria": "Nihai kriter: Şartname görevini simülasyonda %100, sahada güvenle tekrarlayabilmek."
+          ]
         }
       ]
     }
   ],
+  "milestones": [
+    {
+      "id": "m0",
+      "phase": "faz0",
+      "label": "M0 — Kalkış hazır",
+      "target": "~Ağu 2026",
+      "criteria": "Araç zinciri kurulu (Linux+Git+Python), 2D sürü simülasyonu çalışıyor, donanım siparişi verildi."
+    },
+    {
+      "id": "m1",
+      "phase": "faz1",
+      "label": "M1 — Sanal sürü uçuyor",
+      "target": "~Eki 2026",
+      "criteria": "3 sanal dron SITL'de çarpışmadan formasyon uçuşu yapıyor. Roller netleşti."
+    },
+    {
+      "id": "m2",
+      "phase": "faz2",
+      "label": "M2 — Kollar birleşti",
+      "target": "~Oca 2027",
+      "criteria": "Üç kol da kendi doneWhen'ini geçti + ilk donanım-in-the-loop / yarı yol entegrasyon testi başarılı."
+    },
+    {
+      "id": "m3",
+      "phase": "faz3",
+      "label": "M3 — İlk gerçek otonom uçuş + ÖTR",
+      "target": "Şartname/ÖTR dönemi (takvime göre)",
+      "criteria": "Tek dronla güvenli otonom uçuş yapıldı; Teknofest ÖTR raporu IEEE formatında teslim edildi."
+    },
+    {
+      "id": "m4",
+      "phase": "faz3",
+      "label": "M4 — Yarışma provası",
+      "target": "Finaller öncesi",
+      "criteria": "Şartname görevi simde %100; sahada 2-3 dron güvenli koordinasyon. KTR teslim, yarışmaya hazır."
+    }
+  ],
   "continuous": {
     "title": "Sürekli Devam Edenler (Her Faz Boyunca)",
+    "note": "Bunlar 'ekstra' değil, formasyonun motorudur. Öğret-öğren ve günlük olmadan verimlilik iddiası boştur.",
     "items": [
-      "📝 Haftalık öğrenme günlüğü — herkes o hafta öğrendiği 1 şeyi siteye ekler",
-      "🗣️ Haftalık 30 dk \"öğret-öğren\" toplantısı — dönüşümlü sunum",
-      "🇬🇧 Teknik İngilizce: dökümanların çoğu İngilizce; okudukça gelişir, ayrıca çalışmaya gerek yok",
-      "📄 Rapor yazımı: Teknofest ÖTR/KTR raporları için IEEE formatı alışkanlığı"
+      "🗣️ Haftalık öğret-öğren toplantısı (45 dk) — dönüşümlü sunum + çalışan demo. En verimli öğrenme burada olur.",
+      "📝 Haftalık öğrenme günlüğü — herkes o hafta öğrendiği 1 şeyi ve takıldığı 1 'blocker'ı siteye ekler.",
+      "🔗 Yarı yol entegrasyonları — kollar ayrılınca bile ayda en az 1 kez birbirinin çıktısını konuşturmak.",
+      "🇬🇧 Teknik İngilizce — dökümanların çoğu İngilizce; okudukça gelişir, ayrıca çalışmaya gerek yok.",
+      "📄 Rapor yazımı — Teknofest ÖTR/KTR için baştan IEEE formatı alışkanlığı; her fazın çıktısı kısa bir teknik nota dönüşür."
     ]
   }
 }
