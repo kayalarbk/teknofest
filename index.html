@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SwarmTech — Öğrenme Yol Haritası</title>
-  <meta name="description" content="Sürü dron projemizin tam öğrenme haritası. İşaretle, ilerle, uç.">
+  <title>SwarmTech — Konu Haritası</title>
+  <meta name="description" content="Teknofest 2027 dron sürüsü ekibinin interaktif öğrenme yol haritası. İşaretle, ilerle, uç.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛸</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ═══════════ 1) ÜST BAR — Görev Durumu ═══════════ -->
+  <!-- ═══════════ ÜST BAR ═══════════ -->
   <header class="topbar">
     <div class="topbar__brand">🛸 <span>SwarmTech</span></div>
     <div class="topbar__progress" role="progressbar" aria-label="Genel ilerleme" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="topbar-progress">
@@ -23,26 +23,49 @@
     <div class="topbar__countdown" title="Teknofest 2027'ye kalan gün">
       <span class="topbar__days" id="countdown-days">—</span> gün
     </div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Tema değiştir" title="Tema değiştir">◐</button>
   </header>
 
-  <!-- ═══════════ 2) HERO ═══════════ -->
+  <!-- ═══════════ HERO ═══════════ -->
   <section class="hero">
     <canvas id="swarm-bg" aria-hidden="true"></canvas>
     <div class="hero__inner">
-      <h1>Ne Öğrenmeliyiz?</h1>
-      <p class="hero__sub">Sürü dron projemizin tam öğrenme haritası. İşaretle, ilerle, uç.</p>
-      <div class="phase-cards" id="phase-cards">
-        <!-- JS: faz kartları + donut halkalar -->
-      </div>
+      <h1>Konu Haritası</h1>
+      <p class="hero__sub" id="hero-philosophy">Sürü dron projemizin tam öğrenme haritası. İşaretle, ilerle, uç.</p>
+      <div class="phase-chips" id="phase-chips"><!-- JS: faz özet çipleri --></div>
     </div>
   </section>
 
-  <!-- ═══════════ 3) FAZ BÖLÜMLERİ ═══════════ -->
-  <main id="phases">
+  <!-- ═══════════ FİLTRELER ═══════════ -->
+  <div class="controls" id="controls">
+    <input type="search" id="search" class="controls__search" placeholder="Konu veya madde ara…" aria-label="Konularda ara">
+    <select id="filter-owner" class="controls__select" aria-label="Kişiye göre filtrele">
+      <option value="">Herkes</option>
+    </select>
+    <div class="controls__seg" role="group" aria-label="Duruma göre filtrele">
+      <button class="seg-btn active" data-status="all">Tümü</button>
+      <button class="seg-btn" data-status="open">Açık</button>
+      <button class="seg-btn" data-status="done">Tamamlanan</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ YOL HARİTASI ═══════════ -->
+  <main class="roadmap" id="roadmap">
     <p class="loading" id="loading-msg">Müfredat yükleniyor…</p>
   </main>
 
-  <!-- ═══════════ 5) HAFTALIK GÜNLÜK ═══════════ -->
+  <!-- ═══════════ İLKELER ═══════════ -->
+  <section class="section" id="principles-section" hidden>
+    <h2 class="section__title">Neden bu formasyon?</h2>
+    <div class="principles" id="principles"></div>
+  </section>
+
+  <!-- ═══════════ SÜREKLİ DEVAM EDENLER ═══════════ -->
+  <section class="section" id="continuous-section" hidden>
+    <div class="continuous" id="continuous"></div>
+  </section>
+
+  <!-- ═══════════ HAFTALIK GÜNLÜK ═══════════ -->
   <section class="section" id="logbook">
     <h2 class="section__title">Haftalık Günlük</h2>
     <div class="logbook">
@@ -56,10 +79,15 @@
     </div>
   </section>
 
-  <!-- ═══════════ 6) KUTLAMA OVERLAY ═══════════ -->
-  <div class="celebration" id="celebration" aria-live="polite">
-    <p class="celebration__text" id="celebration-text"></p>
-  </div>
+  <!-- ═══════════ BU HAFTA PANELİ ═══════════ -->
+  <button class="week-fab" id="week-fab" aria-expanded="false" aria-controls="week-panel">📅 Bu Hafta</button>
+  <aside class="week-panel" id="week-panel" hidden aria-label="Haftalık ritim">
+    <div class="week-panel__head">
+      <h3 id="week-title">Haftalık Ritim</h3>
+      <button class="week-panel__close" id="week-close" aria-label="Paneli kapat">✕</button>
+    </div>
+    <div class="week-panel__body" id="week-body"></div>
+  </aside>
 
   <!-- ═══════════ FOOTER ═══════════ -->
   <footer class="footer">
@@ -68,7 +96,6 @@
   </footer>
 
   <script src="js/swarm-bg.js"></script>
-  <script src="js/progress.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

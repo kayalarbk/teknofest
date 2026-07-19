@@ -17,8 +17,19 @@
     separationRadius: 26,
     maxSpeed: 0.8,
     maxForce: 0.02,
-    color: "rgba(34, 211, 238, 0.55)",
+    color: "rgba(0, 113, 227, 0.35)",
   };
+
+  // Boid rengi temadan gelir (--boid); tema değişince tazelenir
+  function readColor() {
+    const c = getComputedStyle(document.documentElement).getPropertyValue("--boid").trim();
+    if (c) CONFIG.color = c;
+  }
+  readColor();
+  window.addEventListener("themechange", () => {
+    readColor();
+    if (reducedMotion) drawStatic();
+  });
 
   let width, height, boids = [];
 
