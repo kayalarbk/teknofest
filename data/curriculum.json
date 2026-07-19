@@ -2,6 +2,7 @@
   "meta": {
     "target": "Teknofest 2027 — Dron Sürü",
     "team": "3 kişilik çekirdek ekip (2027 yarışması öncesi büyütülecek)",
+    "members": ["Barış", "Salih", "Furkan"],
     "start": "Temmuz 2026",
     "philosophy": "Küçük ekibin tek avantajı verimliliktir. Bu müfredat 'her şeyi baştan sona sırayla oku' üzerine değil; 'kullanacağın anda, üreterek ve birbirine öğreterek öğren' üzerine kurulu. Bir modül okumayla değil, çalışan bir çıktıyla kapanır.",
     "principles": [
